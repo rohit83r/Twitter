@@ -12,9 +12,9 @@ app.listen(PORT,async ()=>{
     console.log('Mongo db connected');    
     
     const tweetRepo = new TweetRepository();
-    const tweet = await tweetRepo.get('66c1f4b6a2641bfdbabdaf0f');
-    
-    console.log(tweet);
+    const tweet = await tweetRepo.getAll(0,2);
+
+    console.log(tweet[0].contentWithEmail);
 
 
 })  
