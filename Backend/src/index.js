@@ -3,16 +3,18 @@ const app=express();
 const connect=require('./config/database');
 const PORT=3000;
 
-const Tweet =require('./models/tweet');
+const TweetRepository =require('./repository/tweet-repository');  
+const Comment = require('./models/comment');
 
 app.listen(PORT,async ()=>{
     console.log(`Server started at ${PORT}`);
     await connect();
     console.log('Mongo db connected');    
-    const tweet = await Tweet.create({
-        content:'third Tweet',
-        userEmail:'erdb@dt.in'
-    })
+    
+    const tweetRepo = new TweetRepository();
+    const tweet = await tweetRepo.get('66c1f4b6a2641bfdbabdaf0f');
+    
     console.log(tweet);
 
-})
+
+})  
